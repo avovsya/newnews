@@ -1,6 +1,6 @@
 var GMailInterface = require('./lib/gmail2'),
     fs             = require('fs'),
-    //mailConfig     = JSON.parse(fs.readFileSync(process.cwd() + '/config.json', 'utf-8')),
+    _               = require('underscore'),
     mailConfig = require('./config.json'),
     client         = new GMailInterface(),
     path           = require('path'),
@@ -24,8 +24,29 @@ if ('development' == app.get('env')) {
   app.use(express.errorHandler());
 }
 
+app.get('/list', function (req, res) {
+    var client = new GMailInterface();
+    client.connect(mailConfig, function () {
+        client.getList({
+            success: function (messages) {
+                //res.send(JSON.stringify(messages));
+                res.render('list', {
+                    messages: _.filter(messages, function (msg) {
+                        return msg.from && msg.from.length > 0
+                    })
+                });
+                //client.logout();
+            },
+            error: function (err) {
+                res.send(JSON.stringify(err));
+            }
+        });
+    });
+});
+
 app.get('/', function (req, res) {
-    client.connect(mailConfig);
+    client.connect(mailConfig, function () {
+    });
 
     client.on('messages', function (msg) {
         res.send(msg[0].body);

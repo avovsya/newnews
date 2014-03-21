@@ -1,0 +1,16 @@
+doctype html
+html
+    head
+        title List of Newsletters
+
+    body
+        table
+            tr
+                th Seen
+                th From
+                th Subject
+            each message in messages
+                tr
+                    td= message.seen
+                    td= message.from[0].name
+                    td= message.subject
