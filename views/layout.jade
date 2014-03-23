@@ -1,0 +1,15 @@
+doctype html
+html
+  head
+    title= title
+    //-link(rel='stylesheet', href='/stylesheets/style.css')
+    //-link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+  body
+    //-if user
+        //-span= user.username
+        //-a(href='/logout') Logout
+
+    block content
+
+    //-script(src='/bower_components/jquery/jquery.js')
+    //-script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
