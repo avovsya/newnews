@@ -2,11 +2,10 @@ extends layout
 block content
     table
         tr
-            th Seen
             th From
             th Subject
         each message in messages
-            tr
-                td= message.seen
-                td= message.from[0].name
-                td= message.subject
+            tr(class=message.seen ? 'seen' : '')
+                td= message.from.name
+                td 
+                    a(href='/email/' + message.uid)= message.subject
