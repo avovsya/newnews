@@ -2,14 +2,42 @@ doctype html
 html
   head
     title= title
-    //-link(rel='stylesheet', href='/stylesheets/style.css')
-    //-link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
+
+    script(type='text/template', id='senders-template')
+       ul.nav.nav-pills.nav-stacked
+           {{#each senders}}
+           li(class='sender')
+               a(href="#", class='sender-link')
+                   .sender-name {{name}}
+                       span.badge.pull-right.unread-messages {{unread}}
+                   .sender-address {{address}}
+           {{/each}}
+
+    script(type='text/template', id='messages-template')
+        ul.list-group
+            {{#each messages}}
+            li.list-group-item.mail(class="{{read}}")
+                a.mail-subject(href='/api/mail/{{UID}}') {{title}}
+            {{/each}}
+
+    script(type='text/template', id='message-template')
+        a(href='#', class='back') < Back
+        div.message
+            {{{body}}}
+
   body
-    //-if user
-        //-span= user.username
-        //-a(href='/logout') Logout
+    .container-fluid
+        block content
 
-    block content
 
-    //-script(src='/bower_components/jquery/jquery.js')
-    //-script(src='/bower_components/bootstrap/dist/js/bootstrap.min.js')
+    //- LIBRARIES
+    script(src='/bower_components/underscore/underscore.js')
+    script(src='/bower_components/handlebars/handlebars.js')
+
+    //- FRAMEWORK
+    script(src='/bower_components/jquery/dist/jquery.js')
+
+    //- APP
+    script(src='/js/app.js')

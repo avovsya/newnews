@@ -1,0 +1,56 @@
+ul {
+    list-style: none;
+    padding: 0;
+    margin: 0;
+}
+
+.content {
+    height: 100%;
+    width: 100%;
+}
+
+.left {
+    float: left;
+    height: 100%;
+    width: 20%;
+    border: 1px solid #aaa;
+    background: #e5e5e5;
+}
+
+.sender {
+    padding: 7px;
+    border-top: 1px solid #aaa;
+    /*border: 1px solid #aaa;*/
+}
+
+.sender .sender-name {
+    color: black;
+}
+
+.sender .addr-name {
+    color: #797979;
+}
+
+.sender .unread {
+    color: black;
+    font-weight: bold;
+}
+
+.sender .read:before {
+    content: '/';
+}
+
+.sender .read {
+    font-weight: 100;
+}
+
+.sender.selected {
+    background: #F2F2DA;
+}
+
+.right {
+    float: left;
+    height: 100%;
+    width: 80%;
+    border: 1px solid #aaa;
+}
