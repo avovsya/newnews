@@ -2,7 +2,7 @@ doctype html
 html
   head
     title= title
-    link(rel='stylesheet', href='/stylesheets/style.css')
+    link(rel='stylesheet', href='/css/style.css')
     link(rel='stylesheet', href='/bower_components/bootstrap/dist/css/bootstrap.min.css')
 
     script(type='text/template', id='senders-template')
@@ -11,7 +11,9 @@ html
            li(class='sender')
                a(href="#", class='sender-link')
                    .sender-name {{name}}
+                       {{#if unread}}
                        span.badge.pull-right.unread-messages {{unread}}
+                       {{/if}}
                    .sender-address {{address}}
            {{/each}}
 
@@ -19,7 +21,7 @@ html
         ul.list-group
             {{#each messages}}
             li.list-group-item.mail(class="{{read}}")
-                a.mail-subject(href='/api/mail/{{UID}}') {{title}}
+                a.mail-subject(href='/mail/{{UID}}') {{title}}
             {{/each}}
 
     script(type='text/template', id='message-template')

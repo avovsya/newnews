@@ -39,11 +39,12 @@ $(function () {
 
 });
 
-function getMessage (url) {
-    $.get(url, function (data) {
-        $('.mail-list').html(
-            app.templates.message({ body: data.body }));
-    });
+function getMessage (href) {
+    //$.get(url, function (data) {
+        //$('.mail-list').html(
+            //app.templates.message({ body: data.body }));
+    //});
+    $('.mail-list').html($('<iframe>').attr('src', href).addClass('mail-frame'));
 }
 
 function getMessagesForSender (sender) {
