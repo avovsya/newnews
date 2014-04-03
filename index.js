@@ -4,7 +4,8 @@ var path           = require('path'),
     app            = express(),
     passport    = require('passport'),
     mongoose = require('mongoose'),
-    config = require('./config');
+    config = require('./config'),
+    RedisStore = require('connect-redis')(express);
 
 mongoose.connect(config.db.url);
 require('./lib/config/passport')(passport);
@@ -17,7 +18,7 @@ app.use(express.urlencoded());
 app.use(express.cookieParser('scooby do'));
 app.use(express.bodyParser());
 app.use(express.methodOverride());
-app.use(express.session({ secret: 'scooby do' }));
+app.use(express.session({ secret: 'scooby do', store: new RedisStore() }));
 app.use(passport.initialize());
 app.use(passport.session());
 app.use(app.router);
