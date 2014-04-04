@@ -1,3 +1,5 @@
 node_modules/
 authConfig.json
 public/bower_components/*
+dump.rdb
+aggregateSendersMongo.js

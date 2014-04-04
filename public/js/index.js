@@ -1,7 +1,19 @@
 window.app = window.app || {};
+window.app.views = window.app.views || {};
 
 $(function () {
     var app = window.app;
+
+    // Backbone App
+    app.views.SenderList = Backbone.View.extend({
+        render: function () {
+            $(this.el).html(
+                app.templates.senders({ senders: app.senders }))
+        }
+    });
+
+
+
     // Templates
     app.templates = {};
     app.templates.senders = Handlebars.compile($('#senders-template').html());
