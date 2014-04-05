@@ -23,7 +23,7 @@ require.config({
 
 require([
     'backbone',
-    'app'
+    'app',
 ], function (Backbone, App) {
     $(document).ajaxError(function (e, xhr, settings, error) {
         if (xhr.status === 401) {

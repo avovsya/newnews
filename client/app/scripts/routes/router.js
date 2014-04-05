@@ -23,16 +23,14 @@ define([
         var appRouter = new Router();
 
         appRouter.on('route:main', function () {
-            var headerView = new HeaderView();
-            headerView.render();
+            new HeaderView({ el: '.header' });
 
             var sendersView = new SendersView();
             $('body').append(sendersView.render().el);
         });
 
         appRouter.on('route:login', function () {
-            var loginView = new LoginView();
-            loginView.render();
+            new LoginView();
         });
 
         appRouter.on('route:logout', function () {
