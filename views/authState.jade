@@ -1,0 +1,16 @@
+doctype html
+html
+    body
+        script(type='text/javascript').
+            if (window.opener) {
+                window.opener.focus();
+
+                var state = '#{state}';
+                var user = '#{user}';
+
+                if (window.opener.app &&
+                    window.opener.app.updateAuthState) {
+                    window.opener.app.updateAuthState(state, user);
+                }
+            }
+            window.close();
