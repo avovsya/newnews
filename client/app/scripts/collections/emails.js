@@ -8,7 +8,10 @@ define([
     'use strict';
 
     var EmailCollection = Backbone.Collection.extend({
-        model: EmailModel
+        model: EmailModel,
+        url: function () {
+            return '/api/emails/' + this.addr + '/' + this.name;
+        }
     });
 
     return EmailCollection;

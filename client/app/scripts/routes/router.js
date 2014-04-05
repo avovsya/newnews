@@ -4,16 +4,16 @@ define([
     'jquery',
     'backbone',
 
+    'views/twocolumn',
     'views/header',
     'views/login',
-    'views/senders'
 ], function (
     $,
     Backbone,
 
+    TwoColumnView,
     HeaderView,
-    LoginView,
-    SenderListView
+    LoginView
     ) {
     'use strict';
 
@@ -22,6 +22,7 @@ define([
             '': 'main',
             'login': 'login',
             'logout': 'logout',
+            'email/:addr/:name': 'emails',
             '*actions': 'defaultAction',
         }
     });
@@ -32,12 +33,22 @@ define([
         appRouter.on('route:main', function () {
             new HeaderView({ el: '.header' });
 
-            var sendersView = new SenderListView();
-            //$('body').append(sendersView.render().el);
+            new TwoColumnView({ el: $('.main') });
+        });
+
+        appRouter.on('route:emails', function (addr, name) {
+            //new HeaderView({ el: '.header' });
+
+            //var sendersView = new SenderListView();
+            //var emailsView = new EmailListView({
+                //addr: addr,
+                //name: name
+            //});
         });
 
         appRouter.on('route:login', function () {
-            new LoginView();
+            $('.header').empty();
+            new LoginView({ el: $('.main') });
         });
 
         appRouter.on('route:logout', function () {

@@ -34,7 +34,6 @@ define([
                 els.push(itemView.render().el)
             });
             this.$el.html(els);
-            $('.sidebar').html(this.el);
             return this;
         }
     });
