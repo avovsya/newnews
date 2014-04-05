@@ -6,18 +6,14 @@ define([
 
     'views/header',
     'views/login',
-    'views/senders',
-
-    'collections/senders'
+    'views/senders'
 ], function (
     $,
     Backbone,
 
     HeaderView,
     LoginView,
-    SendersView,
-
-    SendersCollection
+    SenderListView
     ) {
     'use strict';
 
@@ -36,7 +32,7 @@ define([
         appRouter.on('route:main', function () {
             new HeaderView({ el: '.header' });
 
-            var sendersView = new SendersView();
+            var sendersView = new SenderListView();
             //$('body').append(sendersView.render().el);
         });
 

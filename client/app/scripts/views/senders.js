@@ -8,10 +8,10 @@ define([
 
     './sender',
     '../collections/senders'
-], function ($, _, Backbone, JST, SenderView, SendersCollection) {
+], function ($, _, Backbone, JST, SenderView, SenderCollection) {
     'use strict';
 
-    var SendersView = Backbone.View.extend({
+    var SenderListView = Backbone.View.extend({
         template: JST['app/scripts/templates/senders.ejs'],
 
         tagName: 'table',
@@ -19,7 +19,7 @@ define([
 
         initialize: function () {
             var _this = this;
-            this.collection = new SendersCollection();
+            this.collection = new SenderCollection();
             this.collection.fetch();
 
             this.collection.bind('reset', this.render, this);
@@ -39,5 +39,5 @@ define([
         }
     });
 
-    return SendersView;
+    return SenderListView;
 });

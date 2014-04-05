@@ -8,9 +8,9 @@ define([
 ], function ($, _, Backbone, JST) {
     'use strict';
 
-    var EmailsView = Backbone.View.extend({
+    var EmailListView = Backbone.View.extend({
         template: JST['app/scripts/templates/emails.ejs']
     });
 
-    return EmailsView;
+    return EmailListView;
 });

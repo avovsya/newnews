@@ -7,9 +7,9 @@ define([
 ], function (_, Backbone, EmailModel) {
     'use strict';
 
-    var EmailsCollection = Backbone.Collection.extend({
+    var EmailCollection = Backbone.Collection.extend({
         model: EmailModel
     });
 
-    return EmailsCollection;
+    return EmailCollection;
 });
