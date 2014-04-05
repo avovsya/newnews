@@ -6,8 +6,19 @@ define([
 
     'views/header',
     'views/login',
-    'views/senders'
-], function ($, Backbone, HeaderView, LoginView, SendersView) {
+    'views/senders',
+
+    'collections/senders'
+], function (
+    $,
+    Backbone,
+
+    HeaderView,
+    LoginView,
+    SendersView,
+
+    SendersCollection
+    ) {
     'use strict';
 
     var Router = Backbone.Router.extend({
@@ -26,7 +37,7 @@ define([
             new HeaderView({ el: '.header' });
 
             var sendersView = new SendersView();
-            $('body').append(sendersView.render().el);
+            //$('body').append(sendersView.render().el);
         });
 
         appRouter.on('route:login', function () {

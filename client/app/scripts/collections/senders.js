@@ -8,7 +8,8 @@ define([
     'use strict';
 
     var SendersCollection = Backbone.Collection.extend({
-        model: SenderModel
+        model: SenderModel,
+        url: '/api/senders'
     });
 
     return SendersCollection;

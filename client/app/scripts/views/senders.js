@@ -5,28 +5,36 @@ define([
     'underscore',
     'backbone',
     'templates',
+
     './sender',
-    '../models/sender'
-], function ($, _, Backbone, JST, SenderView, SenderModel) {
+    '../collections/senders'
+], function ($, _, Backbone, JST, SenderView, SendersCollection) {
     'use strict';
 
     var SendersView = Backbone.View.extend({
         template: JST['app/scripts/templates/senders.ejs'],
 
-        el: $('.sidebar'),
         tagName: 'table',
         className: 'table table-striped',
 
         initialize: function () {
-            this.model = SenderModel;
+            var _this = this;
+            this.collection = new SendersCollection();
+            this.collection.fetch();
+
+            this.collection.bind('reset', this.render, this);
+            this.collection.bind('add', this.render, this);
+            this.collection.bind('remove', this.render, this);
         },
 
         render: function () {
-            var item;
-            for (var i = 0; i < 10 ; i++) {
-                item = new SenderView();
-                this.$el.append(item.render().el);
-            }
+            var els = [];
+            this.collection.each(function (item) {
+                var itemView = new SenderView({ model: item });
+                els.push(itemView.render().el)
+            });
+            this.$el.html(els);
+            $('.sidebar').html(this.el);
             return this;
         }
     });
