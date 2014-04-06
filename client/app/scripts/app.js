@@ -4,12 +4,11 @@ define([
     'jquery',
     'backbone',
     'routes/router'
-], function ($, Backbone, Router) {
+], function ($, Backbone) {
     'use strict';
 
     var app = window.app = {
         initialize: function () {
-            this.router = Router.initialize();
         },
         updateAuthState: function (state, user) {
             if (state === 'success') {

@@ -7,9 +7,7 @@ define([
     'templates',
 
     './email',
-
-    '../collections/emails'
-], function ($, _, Backbone, JST, EmailView, EmailCollection) {
+], function ($, _, Backbone, JST, EmailView) {
     'use strict';
 
     var EmailListView = Backbone.View.extend({
@@ -19,12 +17,6 @@ define([
         className: 'table tabe-striped',
 
         initialize: function () {
-            this.collection = new EmailCollection({
-                addr: this.addr,
-                name: this.name
-            });
-            this.collection.fetch();
-
             this.collection.bind('reset', this.render, this);
             this.collection.bind('add', this.render, this);
             this.collection.bind('remove', this.render, this);

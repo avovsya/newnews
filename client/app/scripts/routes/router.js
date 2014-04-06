@@ -22,7 +22,6 @@ define([
             '': 'main',
             'login': 'login',
             'logout': 'logout',
-            'email/:addr/:name': 'emails',
             '*actions': 'defaultAction',
         }
     });
@@ -34,16 +33,6 @@ define([
             new HeaderView({ el: '.header' });
 
             new TwoColumnView({ el: $('.main') });
-        });
-
-        appRouter.on('route:emails', function (addr, name) {
-            //new HeaderView({ el: '.header' });
-
-            //var sendersView = new SenderListView();
-            //var emailsView = new EmailListView({
-                //addr: addr,
-                //name: name
-            //});
         });
 
         appRouter.on('route:login', function () {

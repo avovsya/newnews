@@ -13,6 +13,16 @@ define([
 
         tagName: 'tr',
 
+        events: {
+            'click a': 'senderSelected'
+        },
+
+        senderSelected: function (e) {
+            this.$el.addClass('selected');
+            this.model.set('selected', true);
+            e.preventDefault();
+        },
+
         render: function () {
             this.$el.html(this.template(this.model.toJSON()));
             return this;

@@ -19,12 +19,16 @@ define([
 
         initialize: function () {
             var _this = this;
-            this.collection = new SenderCollection();
-            this.collection.fetch();
-
             this.collection.bind('reset', this.render, this);
             this.collection.bind('add', this.render, this);
             this.collection.bind('remove', this.render, this);
+
+            this.collection.on('change:selected', function (sender) {
+                if (_this.selectedSender) {
+                    _this.selectedSender.selected = false;
+                }
+                _this.selectedSender = sender;
+            });
         },
 
         render: function () {
