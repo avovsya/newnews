@@ -13,12 +13,23 @@ define([
 
         tagName: 'tr',
 
+        initialize: function () {
+            var _this = this;
+            this.model.on('change:selected', function (model, val) {
+                if (val) {
+                    _this.$el.addClass('active');
+                }
+                else {
+                    _this.$el.removeClass('active');
+                }
+            });
+        },
+
         events: {
-            'click a': 'senderSelected'
+            'click': 'senderSelected'
         },
 
         senderSelected: function (e) {
-            this.$el.addClass('selected');
             this.model.set('selected', true);
             e.preventDefault();
         },

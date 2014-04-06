@@ -15,7 +15,7 @@ define([
         template: JST['app/scripts/templates/senders.ejs'],
 
         tagName: 'table',
-        className: 'table table-striped',
+        className: 'table',
 
         initialize: function () {
             var _this = this;
@@ -23,12 +23,12 @@ define([
             this.collection.bind('add', this.render, this);
             this.collection.bind('remove', this.render, this);
 
-            this.collection.on('change:selected', function (sender) {
+            this.collection.bind('change:selected', function (sender) {
                 if (_this.selectedSender) {
-                    _this.selectedSender.selected = false;
+                    _this.selectedSender.set('selected', false);
                 }
                 _this.selectedSender = sender;
-            });
+            }, this);
         },
 
         render: function () {
