@@ -10,12 +10,12 @@ define([
     var app = window.app = {
         initialize: function () {
         },
-        updateAuthState: function (state, user) {
+        updateAuthState: function (state) {
             if (state === 'success') {
-                this.router.navigate('/', { trigger: true })
+                Backbone.history.navigate('/', { trigger: true });
             }
             else {
-                this.router.navigate('/login', { trigger: true })
+                Backbone.history.navigate('/login', { trigger: true });
             }
         },
     };

@@ -21,21 +21,21 @@ define([
         template: JST['app/scripts/templates/twocolumn.ejs'],
 
         initialize: function () {
-            var _this = this;
             this.senders = new SenderCollection();
             this.emails = new EmailCollection();
-
 
             this.senderListView = new SenderListView({ collection: this.senders });
             this.emailListView = new EmailListView({ collection: this.emails });
 
-            this.senders.on('change:selected', function (sender) {
-                _this.emails.url = '/api/emails/' + sender.get('address') + '/' + sender.get('name');
-                _this.emails.fetch();
-            });
-            
-            this.senders.fetch(function () {
-                _this.senders[0].selected = true;
+            this.senders.bind('change:selected', function (sender) {
+                this.emails.url = '/api/emails/' + sender.get('address') + '/' + sender.get('name');
+                this.emails.fetch();
+            }, this);
+
+            this.senders.fetch({
+                success: function (senders) {
+                    senders.at(0).set('selected', true);
+                }
             });
 
             this.render();
@@ -49,7 +49,7 @@ define([
 
             sidebar.append(this.senderListView.render().el);
             mainContent.append(this.emailListView.render().el);
-            this.return;
+            return this;
         }
     });
 

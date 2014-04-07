@@ -23,16 +23,16 @@ require.config({
 
 require([
     'backbone',
-    'app',
 
+    'app',
     'routes/router'
 ], function (Backbone, App, Router) {
-    $(document).ajaxError(function (e, xhr, settings, error) {
+    $(document).ajaxError(function (e, xhr) {
         if (xhr.status === 401) {
-            App.router.navigate('/login', { trigger: true });
+            Backbone.history.navigate('/login', { trigger: true });
         }
-    })
+    });
 
     App.initialize();
-    App.router = Router.initialize();
+    Router.initialize();
 });

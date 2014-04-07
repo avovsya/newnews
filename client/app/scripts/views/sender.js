@@ -14,15 +14,9 @@ define([
         tagName: 'tr',
 
         initialize: function () {
-            var _this = this;
-            this.model.on('change:selected', function (model, val) {
-                if (val) {
-                    _this.$el.addClass('active');
-                }
-                else {
-                    _this.$el.removeClass('active');
-                }
-            });
+            this.model.bind('change:selected', function (model, selected) {
+                selected ? this.$el.addClass('active') : this.$el.removeClass('active');
+            }, this);
         },
 
         events: {

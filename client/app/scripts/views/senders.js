@@ -6,9 +6,8 @@ define([
     'backbone',
     'templates',
 
-    './sender',
-    '../collections/senders'
-], function ($, _, Backbone, JST, SenderView, SenderCollection) {
+    './sender'
+], function ($, _, Backbone, JST, SenderView) {
     'use strict';
 
     var SenderListView = Backbone.View.extend({
@@ -18,24 +17,16 @@ define([
         className: 'table',
 
         initialize: function () {
-            var _this = this;
             this.collection.bind('reset', this.render, this);
             this.collection.bind('add', this.render, this);
             this.collection.bind('remove', this.render, this);
-
-            this.collection.bind('change:selected', function (sender) {
-                if (_this.selectedSender) {
-                    _this.selectedSender.set('selected', false);
-                }
-                _this.selectedSender = sender;
-            }, this);
         },
 
         render: function () {
             var els = [];
             this.collection.each(function (item) {
                 var itemView = new SenderView({ model: item });
-                els.push(itemView.render().el)
+                els.push(itemView.render().el);
             });
             this.$el.html(els);
             return this;
