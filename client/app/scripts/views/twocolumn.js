@@ -28,6 +28,7 @@ define([
             this.emailListView = new EmailListView({ collection: this.emails });
 
             this.senders.bind('change:selected', function (sender) {
+                if (sender.get('selected') === false) return;
                 this.emails.url = '/api/emails/' + sender.get('address') + '/' + sender.get('name');
                 this.emails.fetch();
             }, this);
